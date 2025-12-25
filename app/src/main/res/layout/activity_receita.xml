@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F8F7F6">
+
+    <TextView
+        android:id="@+id/tvNomeLancheReceita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Editando: X-Bacon"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#eba747"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="O que vai nesse lanche?"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical">
+
+        <Spinner
+            android:id="@+id/spinnerIngredientes"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="48dp"
+            android:background="@android:drawable/btn_dropdown"/>
+
+        <EditText
+            android:id="@+id/edQtdReceita"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:hint="Qtd"
+            android:inputType="numberDecimal"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/btnAddIngrediente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:backgroundTint="#4CAF50"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvUnidadeInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selecione o item e a quantidade que gasta."
+        android:textSize="12sp"
+        android:textColor="#666"
+        android:layout_marginBottom="16dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lista de Ingredientes:"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <ListView
+        android:id="@+id/listaReceita"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/btnConcluirReceita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Concluir Receita"
+        android:backgroundTint="#eba747"/>
+
+</LinearLayout>
