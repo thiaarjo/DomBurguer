@@ -5,22 +5,18 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "insumos")
 public class Insumo {
+
     @PrimaryKey(autoGenerate = true)
     public int id;
 
     public String nome;
-    public String unidadeMedida;
+    public String unidadeMedida; // UN, KG, LT, PCT
+
+    // CAMPOS NOVOS (Se faltar um, o app fecha!)
+    public double precoUnitario;
     public double quantidadeAtual;
     public double estoqueMinimo;
-    public double custoUnitario;
 
-    public Insumo() {}
-
-    public Insumo(String nome, String unidadeMedida, double quantidadeAtual, double estoqueMinimo, double custoUnitario) {
-        this.nome = nome;
-        this.unidadeMedida = unidadeMedida;
-        this.quantidadeAtual = quantidadeAtual;
-        this.estoqueMinimo = estoqueMinimo;
-        this.custoUnitario = custoUnitario;
+    public Insumo() {
     }
 }

@@ -1,8 +1,53 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="Theme.DomBurguer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/yellow_brand</item>
         <item name="colorPrimaryVariant">@color/black_strong</item>
         <item name="colorOnPrimary">@color/black_strong</item>
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
+
+    <style name="LabelText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_grey</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="LabelTextSmall" parent="LabelText">
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+
+    <style name="CustomTextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="android:background">@drawable/bg_input_rounded</item>
+        <item name="startIconTint">@color/accent_yellow</item>
+        <item name="hintTextColor">@color/text_hint</item>
+    </style>
+
+    <style name="CustomEditTextStyle" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:paddingVertical">16dp</item>
+    </style>
+
+    <style name="SmallInputStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">#121212</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:inputType">numberDecimal</item>
+    </style>
+
+    <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@drawable/selector_chip_background</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="ensureMinTouchTargetSize">false</item>
+    </style>
+
 </resources>

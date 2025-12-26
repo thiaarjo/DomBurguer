@@ -9,7 +9,7 @@ import androidx.room.Update;
 import com.thiagoazv.domburguer.model.Insumo;
 import com.thiagoazv.domburguer.model.Produto;
 import com.thiagoazv.domburguer.model.ProdutoIngrediente;
-import com.thiagoazv.domburguer.model.Venda; // Import novo
+import com.thiagoazv.domburguer.model.Venda;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public interface BurgerDao {
 
     // --- PRODUTOS (LANCHES) ---
     @Insert
-    void insertProduto(Produto produto);
+    long insertProduto(Produto produto); // Retorna o ID
 
     @Update
     void updateProduto(Produto produto);
@@ -42,23 +42,41 @@ public interface BurgerDao {
     @Query("SELECT * FROM produtos")
     List<Produto> getAllProdutos();
 
-    // --- RECEITA (FICHA TÉCNICA) ---
+    @Query("SELECT * FROM produtos WHERE id = :id")
+    Produto getProdutoById(int id);
+
+    // --- FICHA TÉCNICA / INGREDIENTES ---
+
+    // 1. Inserir vínculo
     @Insert
-    void insertIngredienteReceita(ProdutoIngrediente item);
+    void insertProdutoIngrediente(ProdutoIngrediente crossRef);
 
-    @Delete
-    void deleteIngredienteReceita(ProdutoIngrediente item);
+    // 2. Limpar (Usado na edição do NovoProdutoActivity)
+    @Query("DELETE FROM produto_ingrediente WHERE produtoId = :prodId")
+    void limparIngredientesDoProduto(int prodId);
 
+    // 3. Pegar IDs (Usado nos Checkboxes do NovoProdutoActivity)
+    @Query("SELECT insumoId FROM produto_ingrediente WHERE produtoId = :prodId")
+    List<Integer> getIdsIngredientesDoProduto(int prodId);
+
+    // 4. Pegar OBJETOS COMPLETOS (Usado na ReceitaActivity) <--- O QUE FALTAVA
     @Query("SELECT * FROM produto_ingrediente WHERE produtoId = :prodId")
     List<ProdutoIngrediente> getIngredientesDoProduto(int prodId);
 
-    // --- VENDAS (HISTÓRICO) - NOVO ---
+    // 5. Deletar um item específico (Usado na ReceitaActivity)
+    @Delete
+    void deleteProdutoIngrediente(ProdutoIngrediente item);
+
+    // --- VENDAS (HISTÓRICO) ---
     @Insert
     void insertVenda(Venda venda);
 
-    @Query("SELECT * FROM vendas ORDER BY id DESC")
-    List<Venda> getAllVendas();
+    @Update
+    void updateVenda(Venda venda);
 
     @Delete
     void deleteVenda(Venda venda);
+
+    @Query("SELECT * FROM vendas ORDER BY id DESC")
+    List<Venda> getAllVendas();
 }

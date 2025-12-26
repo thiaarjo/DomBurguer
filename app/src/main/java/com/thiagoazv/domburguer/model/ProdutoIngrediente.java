@@ -2,9 +2,9 @@ package com.thiagoazv.domburguer.model;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore; // <--- IMPORTANTE: Adicione este import
 import androidx.room.PrimaryKey;
 
-// Aqui a gente amarra o Produto ao Insumo
 @Entity(tableName = "produto_ingrediente",
         foreignKeys = {
                 @ForeignKey(entity = Produto.class, parentColumns = "id", childColumns = "produtoId", onDelete = ForeignKey.CASCADE),
@@ -15,13 +15,23 @@ public class ProdutoIngrediente {
     @PrimaryKey(autoGenerate = true)
     public int id;
 
-    public int produtoId; // Qual lanche é? (Ex: X-Bacon)
-    public int insumoId;  // Qual ingrediente? (Ex: Bacon)
-    public double quantidade; // Quanto gasta? (Ex: 0.2 pacotes ou 2 unidades)
+    public int produtoId;
+    public int insumoId;
+    public double quantidade;
 
+    // --- CONSTRUTOR PRINCIPAL (O Room vai usar este) ---
     public ProdutoIngrediente(int produtoId, int insumoId, double quantidade) {
         this.produtoId = produtoId;
         this.insumoId = insumoId;
         this.quantidade = quantidade;
+    }
+
+    // --- CONSTRUTOR AUXILIAR (O Room vai ignorar este) ---
+    // Usamos esse apenas na tela de cadastro para facilitar (padrão quantidade = 1.0)
+    @Ignore
+    public ProdutoIngrediente(int produtoId, int insumoId) {
+        this.produtoId = produtoId;
+        this.insumoId = insumoId;
+        this.quantidade = 1.0;
     }
 }
